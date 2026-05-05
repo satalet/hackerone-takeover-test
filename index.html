@@ -3,63 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تنبيه أمني طارئ</title>
+    <title>تنبيه أمني خطير</title>
     <style>
-        body { background-color: black; color: #00ff00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #scary-ui { display: none; text-align: center; width: 100%; }
-        .btn-cancel { padding: 25px 40px; font-size: 20px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 15px; font-weight: bold; box-shadow: 0 0 30px red; }
+        body { 
+            background-color: black; 
+            color: #00ff00; 
+            font-family: 'Courier New', monospace; 
+            margin: 0; 
+            padding: 10px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        #scary-ui { 
+            display: none; 
+            text-align: center; 
+            width: 100%;
+        }
+        .btn-cancel { 
+            margin-top: 40vh;
+            padding: 20px 40px; 
+            font-size: 20px; 
+            background-color: red; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 15px; 
+            font-weight: bold; 
+            box-shadow: 0 0 20px red; 
+        }
         .flash-red { animation: blinker 0.1s linear infinite; }
-        @keyframes blinker { 50% { background-color: #4b0000; color: white; } }
-        .terminal-text { font-size: 16px; text-align: left; padding: 20px; display: inline-block; background: rgba(0,255,0,0.05); border: 1px solid #00ff00; border-radius: 10px; margin-top: 20px; min-width: 280px; direction: ltr; }
-        #status { color: #ff0000; text-shadow: 0 0 10px red; }
+        @keyframes blinker { 50% { background-color: #400000; } }
+        
+        /* البرواز الأخضر المعدل للموبايل */
+        .terminal-box {
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: right;
+            font-size: 14px; /* صغرنا الخط شوي عشان يوسع */
+            line-height: 1.6;
+        }
+        .status-msg { font-size: 28px; color: red; margin: 10px 0; }
+        .percent { font-size: 50px; margin: 5px 0; }
     </style>
 </head>
 <body>
 
-    <!-- الشاشة الأولى: الفخ -->
     <div id="start-screen">
-        <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ تم رصد محاولة اختراق.. اضغط للإلغاء فوراً!</button>
+        <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ نشاط مشبوه.. اضغط للإلغاء!</button>
     </div>
 
-    <!-- الشاشة الثانية: شاشة الرعب لباسم -->
     <div id="scary-ui">
-        <h1 id="status" style="font-size: 32px;">يا ويلك يا باسم.. راحت الصور والألعاب! 💀</h1>
-        <h2 id="progress" style="font-size: 60px;">0%</h2>
+        <h1 class="status-msg" id="status">بنجاح! سلم على بابا..</h1>
+        <div style="font-size: 40px;">💀</div>
+        <h2 class="percent" id="progress">0%</h2>
         
-        <div class="terminal-text">
-            <p>> Target: Basem's Samsung A05 [تم التحديد]</p>
-            <p>> Location: Al-Quds [الموقع مغلق]</p>
-            <p>> Accessing WhatsApp... [سحب المحادثات]</p>
-            <p style="color: #ff4444; font-weight: bold;">> Deleting PUBG Skins... [حذف سكنات ببجي]</p>
-            <p style="color: #ff4444; font-weight: bold;">> Wiping COD Progress... [تصفير كول أوف ديوتي]</p>
-            <p>> Copying Snapchat... [نسخ ذكريات سناب]</p>
-            <p>> Dumping Gallery... [تفريغ معرض الصور]</p>
-            <p id="log" style="color: yellow;">> Sending to: Abu_Basim_Server...</p>
+        <div class="terminal-box">
+            <p>> Target: Basem's Samsung A05 <span style="color:white">[تم التحديد]</span></p>
+            <p>> Location: Al-Quds <span style="color:red">[الموقع مغلق]</span></p>
+            <p>> Accessing WhatsApp... <span style="color:white">[سحب المحادثات]</span></p>
+            <p>> Deleting PUBG Skins... <span style="color:red">[حذف السكنات]</span></p>
+            <p>> Wiping COD Progress... <span style="color:red">[تصفير الحساب]</span></p>
+            <p>> Copying Snapchat... <span style="color:white">[نسخ الذكريات]</span></p>
+            <p>> Dumping Gallery... <span style="color:red">[تفريغ الصور]</span></p>
         </div>
     </div>
 
     <script>
         function startPrank() {
-            // تشغيل الصوت
             var audio = new Audio('horror.mp3');
-            audio.loop = true;
-            audio.play().catch(function(e) { console.log("Sound error"); });
+            audio.play().catch(function(e){});
 
-            // تبديل الشاشات
             document.getElementById("start-screen").style.display = "none";
             document.getElementById("scary-ui").style.display = "block";
             document.body.classList.add("flash-red");
 
-            // محاكاة سحب البيانات
             var count = 0;
             var interval = setInterval(function() {
-                count += Math.floor(Math.random() * 5) + 1;
-                
+                count += Math.floor(Math.random() * 5) + 2;
                 if (count >= 100) {
                     count = 100;
-                    document.getElementById("status").innerHTML = "تم سحب كل إشي بنجاح! سلم على بابا.. 💀";
-                    document.getElementById("log").innerHTML = "> TRANSFER COMPLETED. SYSTEM DELETED.";
-                    document.getElementById("log").style.color = "red";
+                    document.getElementById("status").innerHTML = "تم السيطرة على الجهاز! 💀";
                     clearInterval(interval);
                 }
                 document.getElementById("progress").innerHTML = count + "%";
