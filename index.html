@@ -10,37 +10,37 @@
         .btn-cancel { padding: 25px 40px; font-size: 20px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 15px; font-weight: bold; box-shadow: 0 0 30px red; }
         .flash-red { animation: blinker 0.1s linear infinite; }
         @keyframes blinker { 50% { background-color: #4b0000; color: white; } }
-        .terminal-text { font-size: 16px; text-align: left; padding: 20px; display: inline-block; background: rgba(0,255,0,0.05); border: 1px solid #00ff00; border-radius: 10px; margin-top: 20px; min-width: 280px; }
+        .terminal-text { font-size: 16px; text-align: left; padding: 20px; display: inline-block; background: rgba(0,255,0,0.05); border: 1px solid #00ff00; border-radius: 10px; margin-top: 20px; min-width: 280px; direction: ltr; }
         #status { color: #ff0000; text-shadow: 0 0 10px red; }
     </style>
 </head>
 <body>
 
-    <!-- الشاشة الأولى: الفخ الماكر -->
+    <!-- الشاشة الأولى: الفخ -->
     <div id="start-screen">
         <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ تم رصد محاولة اختراق.. اضغط للإلغاء فوراً!</button>
     </div>
 
-    <!-- الشاشة الثانية: بهارات أبو باسم المعدلة لباسم -->
+    <!-- الشاشة الثانية: شاشة الرعب لباسم -->
     <div id="scary-ui">
         <h1 id="status" style="font-size: 32px;">يا ويلك يا باسم.. راحت الصور والألعاب! 💀</h1>
         <h2 id="progress" style="font-size: 60px;">0%</h2>
         
         <div class="terminal-text">
-            <p>> Target: basem zorba samsung A05 [DETECTED]</p>
-            <p>> Location: Al-Quds [LOCKED]</p>
-            <p>> Accessing WhatsApp Backups... [OK]</p>
-            <p style="color: #ff4444; font-weight: bold;">> Deleting PUBG Mobile Skins & Stats... [RUNNING]</p>
-            <p style="color: #ff4444; font-weight: bold;">> Wiping COD Mobile Accounts... [IN PROGRESS]</p>
-            <p>> Copying Snapchat Memories... [94%]</p>
-            <p>> Dumping Private Gallery... [WAIT]</p>
-            <p id="log" style="color: yellow;">> Sending all data to: Abu_Basim_Server...</p>
+            <p>> Target: Basem's Samsung A05 [تم التحديد]</p>
+            <p>> Location: Al-Quds [الموقع مغلق]</p>
+            <p>> Accessing WhatsApp... [سحب المحادثات]</p>
+            <p style="color: #ff4444; font-weight: bold;">> Deleting PUBG Skins... [حذف سكنات ببجي]</p>
+            <p style="color: #ff4444; font-weight: bold;">> Wiping COD Progress... [تصفير كول أوف ديوتي]</p>
+            <p>> Copying Snapchat... [نسخ ذكريات سناب]</p>
+            <p>> Dumping Gallery... [تفريغ معرض الصور]</p>
+            <p id="log" style="color: yellow;">> Sending to: Abu_Basim_Server...</p>
         </div>
     </div>
 
     <script>
         function startPrank() {
-            // تشغيل صوت الرعب (تأكد من وجود ملف horror.mp3 في نفس المجلد)
+            // تشغيل الصوت
             var audio = new Audio('horror.mp3');
             audio.loop = true;
             audio.play().catch(function(e) { console.log("Sound error"); });
@@ -53,13 +53,12 @@
             // محاكاة سحب البيانات
             var count = 0;
             var interval = setInterval(function() {
-                // سرعة عشوائية عشان التوتر
                 count += Math.floor(Math.random() * 5) + 1;
                 
                 if (count >= 100) {
                     count = 100;
-                    document.getElementById("status").innerHTML = "تم سحب كل إشي بنجاح! نراك قريباً.. 💀";
-                    document.getElementById("log").innerHTML = "> DATA TRANSFER COMPLETED. CONNECTION CLOSED.";
+                    document.getElementById("status").innerHTML = "تم سحب كل إشي بنجاح! سلم على بابا.. 💀";
+                    document.getElementById("log").innerHTML = "> TRANSFER COMPLETED. SYSTEM DELETED.";
                     document.getElementById("log").style.color = "red";
                     clearInterval(interval);
                 }
