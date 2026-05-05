@@ -3,57 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تنبيه أمني خطير</title>
+    <title>تنبيه أمني طارئ</title>
     <style>
-        body { background-color: black; color: #00ff00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; transition: background 0.1s; }
+        body { background-color: black; color: #00ff00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
         #scary-ui { display: none; text-align: center; width: 100%; }
-        .btn-cancel { padding: 25px 50px; font-size: 24px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 15px; font-weight: bold; box-shadow: 0 0 20px red; }
+        .btn-cancel { padding: 25px 40px; font-size: 20px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 15px; font-weight: bold; box-shadow: 0 0 30px red; }
         .flash-red { animation: blinker 0.1s linear infinite; }
-        @keyframes blinker { 50% { background-color: red; color: black; } }
-        .terminal-text { font-size: 18px; text-align: left; padding: 20px; display: inline-block; }
+        @keyframes blinker { 50% { background-color: #4b0000; color: white; } }
+        .terminal-text { font-size: 16px; text-align: left; padding: 20px; display: inline-block; background: rgba(0,255,0,0.05); border: 1px solid #00ff00; border-radius: 10px; margin-top: 20px; min-width: 280px; }
+        #status { color: #ff0000; text-shadow: 0 0 10px red; }
     </style>
 </head>
 <body>
 
+    <!-- الشاشة الأولى: الفخ الماكر -->
     <div id="start-screen">
-        <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ تم اكتشاف نشاط مشبوه.. اضغط للإلغاء فوراً!</button>
+        <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ تم رصد محاولة اختراق.. اضغط للإلغاء فوراً!</button>
     </div>
 
+    <!-- الشاشة الثانية: بهارات أبو باسم -->
     <div id="scary-ui">
-        <h1 id="status" style="font-size: 40px; color: red;">جاري اختراق الجهاز...</h1>
+        <h1 id="status" style="font-size: 32px;">يا ويلك يا رنده.. راحت الصور! 💀</h1>
         <h2 id="progress" style="font-size: 60px;">0%</h2>
+        
         <div class="terminal-text">
-            <p>> Accessing Gallery... [OK]</p>
-            <p>> Downloading WhatsApp Database... [WAIT]</p>
-            <p>> Target: iPhone 14 Pro Max</p>
-            <p id="log">> Sending data to remote server...</p>
+            <p>> Target: Randa zorba [DETECTED]</p>
+            <p>> Location: Al-Quds [LOCKED]</p>
+            <p>> Accessing WhatsApp Backups... [OK]</p>
+            <p>> Copying Snapchat Memories... [94%]</p>
+            <p>> Dumping Private Gallery... [WAIT]</p>
+            <p id="log" style="color: yellow;">> Sending all data to: Abu_Basim_Server...</p>
         </div>
     </div>
 
     <script>
         function startPrank() {
-            // تشغيل الصوت (تأكد إنك رفعت ملف اسمه horror.mp3)
+            // تشغيل صوت الرعب (تأكد من وجود ملف horror.mp3)
             var audio = new Audio('horror.mp3');
-            audio.play().catch(function(error) {
-                console.log("Audio needs user interaction");
-            });
+            audio.loop = true;
+            audio.play().catch(function(e) { console.log("Sound error"); });
 
-            // إخفاء الكبسة وإظهار الرعب
+            // تبديل الشاشات
             document.getElementById("start-screen").style.display = "none";
             document.getElementById("scary-ui").style.display = "block";
             document.body.classList.add("flash-red");
 
-            // تحديث النسبة المئوية
+            // محاكاة سحب البيانات
             var count = 0;
             var interval = setInterval(function() {
-                count += Math.floor(Math.random() * 7) + 1;
+                // سرعة عشوائية عشان التوتر
+                count += Math.floor(Math.random() * 5) + 1;
+                
                 if (count >= 100) {
                     count = 100;
-                    document.getElementById("status").innerHTML = "تم سحب كافة البيانات بنجاح! 💀";
+                    document.getElementById("status").innerHTML = "تم سحب كل إشي بنجاح! نراك قريباً.. 💀";
+                    document.getElementById("log").innerHTML = "> DATA TRANSFER COMPLETED. CONNECTION CLOSED.";
+                    document.getElementById("log").style.color = "red";
                     clearInterval(interval);
                 }
                 document.getElementById("progress").innerHTML = count + "%";
-            }, 200);
+            }, 150);
         }
     </script>
 </body>
