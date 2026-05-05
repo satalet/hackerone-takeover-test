@@ -21,15 +21,17 @@
         <button id="trap-btn" class="btn-cancel" onclick="startPrank()">⚠️ تم رصد محاولة اختراق.. اضغط للإلغاء فوراً!</button>
     </div>
 
-    <!-- الشاشة الثانية: بهارات أبو باسم -->
+    <!-- الشاشة الثانية: بهارات أبو باسم المعدلة لباسم -->
     <div id="scary-ui">
-        <h1 id="status" style="font-size: 32px;">يا ويلك يا رنده.. راحت الصور! 💀</h1>
+        <h1 id="status" style="font-size: 32px;">يا ويلك يا باسم.. راحت الصور والألعاب! 💀</h1>
         <h2 id="progress" style="font-size: 60px;">0%</h2>
         
         <div class="terminal-text">
-            <p>> Target: Randa zorba [DETECTED]</p>
+            <p>> Target: basem zorba samsung A05 [DETECTED]</p>
             <p>> Location: Al-Quds [LOCKED]</p>
             <p>> Accessing WhatsApp Backups... [OK]</p>
+            <p style="color: #ff4444; font-weight: bold;">> Deleting PUBG Mobile Skins & Stats... [RUNNING]</p>
+            <p style="color: #ff4444; font-weight: bold;">> Wiping COD Mobile Accounts... [IN PROGRESS]</p>
             <p>> Copying Snapchat Memories... [94%]</p>
             <p>> Dumping Private Gallery... [WAIT]</p>
             <p id="log" style="color: yellow;">> Sending all data to: Abu_Basim_Server...</p>
@@ -38,7 +40,7 @@
 
     <script>
         function startPrank() {
-            // تشغيل صوت الرعب (تأكد من وجود ملف horror.mp3)
+            // تشغيل صوت الرعب (تأكد من وجود ملف horror.mp3 في نفس المجلد)
             var audio = new Audio('horror.mp3');
             audio.loop = true;
             audio.play().catch(function(e) { console.log("Sound error"); });
