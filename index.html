@@ -4,25 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تنبيه أمني خطير</title>
+    
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    
     <style>
         body { background-color: black; color: lime; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; overflow: hidden; }
-        #scary-ui { display: none; text-align: center; }
-        .btn-cancel { padding: 20px; font-size: 20px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 10px; z-index: 100; position: relative; }
+        #scary-ui { display: none; text-align: center; width: 100%; }
+        .btn-cancel { padding: 25px; font-size: 22px; background-color: red; color: white; border: none; cursor: pointer; border-radius: 15px; font-weight: bold; position: relative; z-index: 999; }
         .flash-red { animation: blinker 0.1s linear infinite; }
         @keyframes blinker { 50% { background-color: red; } }
+        #start-screen { text-align: center; }
     </style>
 </head>
 <body>
+
     <div id="start-screen">
-        <button id="trap-btn" class="btn-cancel">⚠️ نشاط مشبوه.. اضغط للإلغاء فوراً!</button>
+        <button id="trap-btn" class="btn-cancel">⚠️ تم اكتشاف فيروس.. اضغط للإلغاء فوراً!</button>
     </div>
 
     <div id="scary-ui">
-        <h1 id="status">جاري سحب الصور والملفات...</h1>
-        <h2 id="progress">0%</h2>
-        <p>Target Device: Mobile Phone</p>
+        <h1 id="status" style="font-size: 30px;">جاري مسح محتويات الجهاز...</h1>
+        <h2 id="progress" style="font-size: 50px;">0%</h2>
+        <p style="color: white;">Target: iPhone 14 Pro Max</p>
+        <p>Status: Encrypting Photos...</p>
     </div>
 
     <py-script>
@@ -30,11 +35,14 @@ from js import document, setTimeout, Audio
 import random
 
 def start_prank(event):
-    # تشغيل الصوت
-    sound = Audio.new("horror.mp3")
-    sound.play()
-    
-    # إخفاء الكبسة وإظهار الرعب
+    # تشغيل الصوت (تأكد إن الملف موجود في GitHub بنفس الاسم)
+    try:
+        sound = Audio.new("horror.mp3")
+        sound.play()
+    except:
+        pass # عشان الكود يكمل حتى لو الصوت ما اشتغل
+
+    # تفعيل الرعب
     document.getElementById("start-screen").style.display = "none"
     document.getElementById("scary-ui").style.display = "block"
     document.body.classList.add("flash-red")
@@ -42,13 +50,16 @@ def start_prank(event):
     def update_progress(count):
         if count <= 100:
             document.getElementById("progress").innerHTML = f"{count}%"
-            setTimeout(lambda: update_progress(count + random.randint(5, 10)), 200)
+            # سرعة التحديث عشوائية عشان التوتر
+            setTimeout(lambda: update_progress(count + random.randint(3, 8)), 150)
         else:
-            document.getElementById("status").innerHTML = "تم الاختراق بنجاح! 💀"
-    
+            document.getElementById("status").innerHTML = "تم اختراق النظام بنجاح! 💀"
+
     update_progress(0)
 
+# ربط الكبسة بكود البايثون
 document.getElementById("trap-btn").onclick = start_prank
     </py-script>
+
 </body>
 </html>
